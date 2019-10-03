@@ -29,6 +29,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'slim-rails'
 gem 'devise'
 gem 'httparty', '~> 0.17.0'
+gem "pundit"
+
 
 
 # Use ActiveStorage variant
