@@ -1,0 +1,12 @@
+= render 'shared/navbar'
+.new-user-signup-container
+  h2 New Category
+  =form_with model: @category, local: true do |form|
+    p
+      => form.label :'Category Name'
+      =< form.text_field :name
+    p
+      = form.submit class: "custom_button"
+      br
+      br
+      = link_to 'Back', categories_path

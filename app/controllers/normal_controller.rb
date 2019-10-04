@@ -1,0 +1,2 @@
+class NormalController < AuthenticatedController
+end
