@@ -1,0 +1,27 @@
+= render 'shared/navbar'
+.form-container
+  h2 New Event
+  =form_with model: @event, local: true do |form|
+    p
+        => form.label :'Event Name'
+        =< form.text_field :name,  required: true
+    p
+        => form.label :'Number of Tickets'
+        =< form.number_field :num_tickets,  required: true
+    p
+        => form.label :'Price of a Ticket'
+        =< form.number_field :price,  required: true
+    p
+        => form.label :'Date'
+        =< form.date_field :date, min: (Date.today+7.days), required: true
+    p
+        => form.label :'Category'
+        =< form.select(:category_id, Category.pluck(:name, :id))
+    p
+        => form.label :'Event Description'
+        =< form.text_area :description,  required: true
+    p
+      = form.submit class: "custom_button"
+      br
+      br
+      = link_to 'Back', categories_path

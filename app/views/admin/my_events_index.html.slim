@@ -1,0 +1,48 @@
+= render 'shared/navbar'
+
+.form-container
+    br
+    h1 = "My Events"
+    p
+        h3= "My Upcoming Events"
+        - if @my_upcoming_events.blank?
+            ="You don't have any past events"
+        - else
+            .grid-container
+                .grid-x.grid-margin-x.align-center
+                    .cell.small-20.medium-20.large-20
+                        table.unstriped.table_style-container
+                            thead
+                                tr
+                                    th = "Event Name"
+                                    th = "Event Date"
+                                    th = "Number of Tickets"
+                            tbody
+                                -@my_upcoming_events.each do |event|
+                                    tr
+                                        td = event.name
+                                        td = event.date
+                                        td = event.num_tickets
+                                
+    p
+        h3 = "My Past Events"
+        - if @my_past_events.blank?
+            = "You don't have any upcoming events"
+        - else
+        .grid-container
+            .grid-x.grid-margin-x.align-center
+                .cell.small-20.medium-20.large-20
+                    table.unstriped.table_style-container
+                        thead
+                            tr
+                                th = "Event Name"
+                                th = "Event Date"
+                                th = "Number of Tickets"
+                        tbody
+                            -@my_past_events.each do |event|
+                                tr
+                                    td = event.name
+                                    td = event.date
+                                    td = event.num_tickets               
+            
+    = button_to "New Event", new_event_path, class:"custom_button", method: :get

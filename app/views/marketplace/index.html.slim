@@ -1,0 +1,18 @@
+= render 'shared/navbar'
+.form-container
+    p 
+        h3= "Events on the Marketplace"
+        br
+        - if @tickets_on_sale.blank?
+            ="There are no events with tickets for sale"
+        - else
+            .grid-container
+                .grid-x.grid-margin-x.align-center
+                    .cell.small-20.medium-20.large-20
+                        table.unstriped.table_style-container
+                            th = "Event Name"
+                            th = "Tickets Available"
+                            -@marketplace_events.each do |marketplace_event|
+                                tr
+                                    td = link_to marketplace_event.name, show_marketplace_path(marketplace_event)
+                                    td = marketplace_event.tickets_on_resell

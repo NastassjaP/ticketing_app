@@ -1,17 +1,18 @@
 = render 'shared/navbar'
-<div class= "new-user-signup-container">
-    h2 align = "center" Categories
+<div class= "form-container">
+    br
+    h2 Categories
     -if @categories.empty?
-        ="There are currently no categories"
+        = "There are currently no categories"
         br
     -else
         .grid-container
             .grid-x.grid-margin-x.align-center
                 .cell.small-20.medium-20.large-20
-                    table.
+                    table
                             -@categories.each do |category|
                                     tr
-                                        td = link_to category.name, categories_path(category)
+                                        td = link_to category.name, category_path(category)
 br
 br
     = button_to "New Category", new_category_path, class:"custom_button", method: :get

@@ -1,0 +1,43 @@
+.table_style-container {
+  table {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    width: 100%;
+  }
+
+  th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: rgb(238, 232, 221);
+    text-align: center;
+  }
+
+  tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+
+  }
+
+  tr:hover {
+    background-color: rgba(232, 209, 204, 0.486);
+  }
+
+  thead {
+    display: block;
+    flex: 0 0 auto;
+    margin-left: -20%;
+    margin-right: -20%;
+  }
+
+  tbody {
+    display: block;
+    height: 220px;
+    margin-left: -20%;
+    margin-right: -20%;
+    overflow-y: auto; /* Trigger vertical scroll    */
+    overflow-x: hidden; /* Hide the horizontal scroll */
+
+  }
+}

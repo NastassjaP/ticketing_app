@@ -1,0 +1,32 @@
+= render 'shared/navbar'
+.form-container
+  - if current_user.type == "Admin"
+    br
+    h2 = @event.name
+    br
+    h4 ="Category: #{@event.category.name}"
+    br
+    h4 ="Date: #{@event.date}"
+    br
+
+    - if @event.date < Date.today + 7.days
+      h4 = "Tickets Sold: #{@event.tickets_sold}"
+
+    - elsif @event.date >= Date.today + 7.days
+      h4 = "Tickets Available: #{@event.tickets_remaining}"
+  -else
+    br
+    h2 = @event.name
+    br
+    -if @event.tickets_remaining > 0
+      h4 = "#{pluralize(@event.tickets_remaining, 'ticket')} available"
+    -else
+      h4 ="Sold Out"
+      
+    h4 ="Starts in #{distance_of_time_in_words(@event.date, Date.today)}"
+    
+    h4 ="Description: #{@event.description}"
+
+  = button_to "Purchase Tickets", new_event_account_transaction_path(@event), class:"custom_button", method: :get
+
+

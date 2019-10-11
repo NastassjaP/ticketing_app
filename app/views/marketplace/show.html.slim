@@ -1,0 +1,24 @@
+= render 'shared/navbar'
+.form-container
+    p 
+        h3 = @event.name
+        h4 = "Starts in #{distance_of_time_in_words(@event.date, Date.today)}"
+        h4 = "#{pluralize(@event.tickets_on_resell.to_i, 'ticket')} available on resale"
+        h4 = "Description: #{@event.description}"
+        br
+        - if @tickets_on_sale.blank?
+            ="There are no tickets for sale"
+        - else
+            .grid-container
+                .grid-x.grid-margin-x.align-center
+                    .cell.small-20.medium-20.large-20
+                        table.unstriped.table_style-container
+                            th = "Ticket Price"
+                            th = "Ticket Uuid"
+                            th
+                            -@tickets_on_sale.each do |ticket|
+                                tr
+                                    td = ticket.price
+                                    td = ticket.number
+                                    - if ticket.purchaser_id != current_user.id
+                                        td = button_to "Buy Ticket", edit_marketplace_path, class:"custom_button", method: :patch, params: {'type' => "buy", :ticket => ticket}

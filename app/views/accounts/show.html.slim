@@ -1,0 +1,23 @@
+= render 'shared/navbar'
+<div class= "form-container">
+    br
+    h2 My Account
+    -if @transactions.empty?
+        = "There are no transactions to show"
+        br
+    -else
+        .grid-container
+            .grid-x.grid-margin-x.align-center
+                .cell.small-20.medium-20.large-20
+                    table
+                      tr
+                        th = "Amount"
+                        th = "Note"
+                        th = "Created"
+                      -@transactions.each do |transactions|
+                              tr
+                                  td = transactions.amount
+                                  td = transactions.note
+                                  td = transactions.created_at
+
+br

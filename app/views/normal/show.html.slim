@@ -1,0 +1,34 @@
+= render 'shared/navbar'
+.form-container
+  br
+  h2 = "My Profile"
+  h3 ="Name: #{@user.first_name + " " + @user.last_name}"
+  h3 ="Account Balance: R#{@user.account.amount}"
+  br
+  br
+  br
+  u
+    h3 ="My Tickets"
+  br
+  - if @upcoming_tickets.present?
+    h4= "Upcoming Events"
+    .grid-container
+      .grid-x.grid-margin-x.align-center
+        .cell.small-20.medium-20.large-20
+          table.unstriped
+            th = "Event Name"
+            th = "Ticket Uuid"
+            -@upcoming_tickets.each do |ticket|
+              tr
+                td = ticket.event.name
+                td = ticket.number
+                td = button_to "Resell Ticket", edit_marketplace_path, class:"custom_button", method: :patch,  params: {'type' => "resell",'ticket' => ticket}
+
+  br
+  br
+  br
+  - if @past_tickets.present?
+    h4 = "Past Events"
+    -@past_tickets.each do |ticket|
+      = ticket.event.name
+      = ticket.number

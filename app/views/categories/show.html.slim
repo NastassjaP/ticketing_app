@@ -1,0 +1,43 @@
+= render 'shared/navbar'
+
+.form-container
+    h1 = @category.name
+    p 
+        h3= "Upcoming Events"
+        - if @upcoming_events.blank?
+            ="There are no upcoming events in this category"
+        - else
+            .grid-container
+                .grid-x.grid-margin-x.align-center
+                    .cell.small-20.medium-20.large-20
+                        table.unstriped.table_style-container
+                            th = "Event Name"
+                            th = "Event Date"
+                            th = "Number of Tickets"
+
+                            -@upcoming_events.each do |event|
+                                tr
+                                    td = event.name
+                                    td = event.date
+                                    td = event.num_tickets
+                                      
+    p 
+        h3 = "Past Events"
+        - if @past_events.blank?
+            = "There are no past events in this category"
+        - else
+            .grid-container
+                .grid-x.grid-margin-x.align-center
+                    .cell.small-20.medium-20.large-20
+                        table.unstriped.table_style-container
+                            th = "Event Name"
+                            th = "Event Date"
+                            th = "Number of Tickets"
+
+                            -@past_events.each do |event|
+                                tr
+                                    td = event.name
+                                    td = event.date
+                                    td = event.num_tickets
+                
+        br

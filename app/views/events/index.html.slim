@@ -1,0 +1,45 @@
+= render 'shared/navbar'
+.form-container
+    p 
+        h3= "Upcoming Events"
+        br
+        - if @upcoming_events.blank?
+            ="There are no upcoming events"
+        - else
+            .grid-container
+                .grid-x.grid-margin-x.align-center
+                    .cell.small-20.medium-20.large-20
+                        table.unstriped.table_style-container
+                            th = "Event Name"
+                            th = "Event Date"
+                            th = "Number of Tickets"
+
+                            -@upcoming_events.each do |event|
+                                tr
+                                    td = link_to event.name, event_path(event)
+                                    td = link_to event.date, event_path(event)
+                                    td = link_to event.num_tickets, event_path(event)
+        p
+            -if current_user.type == "Admin"                         
+                h3 = "Past Events"
+                br
+                - if @past_events.blank?
+                    = "There are no past events"
+                - else
+                    .grid-container
+                        .grid-x.grid-margin-x.align-center
+                            .cell.small-20.medium-20.large-20
+                                table.unstriped.table_style-container
+                                    th = "Event Name"
+                                    th = "Event Date"
+                                    th = "Number of Tickets"
+
+                                    -@past_events.each do |event|
+                                        tr
+                                            td = link_to event.name, event_path(event)
+                                            td = link_to event.date, event_path(event)
+                                            td = link_to event.num_tickets, event_path(event)
+                        
+                    br
+                    br
+                = button_to "New Event", new_event_path, class:"custom_button", method: :get

@@ -1,11 +1,14 @@
 = render 'shared/navbar'
-.new-user-signup-container
+.form-container
+  br
   h2 New Category
+  br
   =form_with model: @category, local: true do |form|
     p
       => form.label :'Category Name'
       =< form.text_field :name
     p
+    br
       = form.submit class: "custom_button"
       br
       br
