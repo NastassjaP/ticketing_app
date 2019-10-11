@@ -16,8 +16,10 @@ class CategoriesController < AuthenticatedController
       @category = Category.new(category_params)
       authorize @category
       if @category.save
+        flash[:alert] = "Category created"
         redirect_to categories_path
       else
+        flash[:alert] = "Category could not be created"
         redirect_to new_category_path
       end
     end

@@ -4,6 +4,7 @@ class EventsController < AuthenticatedController
         @upcoming_events = @events.upcoming_events.order(date: :asc)
         @past_events = @events.past_events.order(date: :asc)
         authorize @events
+
     end
 
     def new
@@ -15,7 +16,8 @@ class EventsController < AuthenticatedController
         @event=Event.new(event_params)
         authorize @event
         if @event.save
-            TicketService.new(@event, params[:event][:price],0,0).create_tickets
+            TicketService.new(@event, params[:event][:price],0,0,@event.num_tickets).create_tickets
+            flash[:alert] = "Event created"
             redirect_to events_path
         else
             flash[:alert] = "Event could not be created"

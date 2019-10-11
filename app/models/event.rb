@@ -19,7 +19,7 @@ class Event < ApplicationRecord
   end
 
   def tickets_remaining
-    tickets.where(on_resell: "true").or(tickets.where(sold_originally: "false")).count
+    tickets.where(sold_originally: "false").count
   end
 
   def tickets_on_resell

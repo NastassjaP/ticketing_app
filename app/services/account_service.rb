@@ -6,6 +6,7 @@ class AccountService
 
   def create_account
       @account = Account.create(user: @user, amount: '100.00')
+
   end
 
   def change_account_amount

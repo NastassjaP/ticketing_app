@@ -18,8 +18,8 @@
                                 tr
                                     td = link_to event.name, event_path(event)
                                     td = link_to event.date, event_path(event)
-                                    td = link_to event.num_tickets, event_path(event)
-        p
+                                    td = link_to event.tickets_remaining, event_path(event)
+            
             -if current_user.type == "Admin"                         
                 h3 = "Past Events"
                 br
