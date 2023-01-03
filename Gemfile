@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'slim-rails'
 gem 'devise'
-gem 'httparty', '~> 0.17.0'
+gem 'httparty', '~> 0.21.0'
 gem "pundit"
 gem 'foundation-rails'
 gem 'autoprefixer-rails'
